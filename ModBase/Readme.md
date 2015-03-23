@@ -29,7 +29,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("mod description")]
 [assembly: AssemblyCompany("author name")]
 [assembly: AssemblyProduct("mod name")]
-[assembly: AssemblyCopyright("© 2015 author name")]
+[assembly: AssemblyCopyright("Â© 2015 author name")]
 [assembly: AssemblyCulture("")]
 
 [assembly: ComVisible(false)]
@@ -54,6 +54,16 @@ You are now done setting up the project and can start coding your plugin.
 ## Example implementation
 
 Please check out my implementation of the Autosave mod for details on how to use these 3 classes.
+
+## Steam Workshop
+
+Once you have developed your first working plugin, you will want to publish to the Steam Workshop via the ingame Content Manager. After publishing to the Steam Workshop, you should subscribe to your own mod. You receive your mod back but now in a new location:
+
+`<Steam Root>\SteamApps\workshop\content\255710\<steam_workshop_id>\` 
+
+The number `255710` is the game id. In that folder each mod will have its own folder id. Find your own mod and copy the updated files in here. You can now publish an update via the Content Manager.
+
+*Note: I choose not to copy using post-build event to this folder automatically.*
 
 ## Api reference
 
