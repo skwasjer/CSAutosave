@@ -8,6 +8,9 @@ The Cities Skylines Mod Helper classes are a set of classes that should make wri
 
 - Create a new C# library project
 - Make sure you have Target Framework 3.5 set
+- Add references to:
+  - System
+  - System.Configuration
 - Add references to the game its managed libraries:
   - ICities.dll
   - Assembly-CSharp.dll
