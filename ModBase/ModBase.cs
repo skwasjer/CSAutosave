@@ -32,17 +32,31 @@ namespace skwas.CitiesSkylines
 		/// <summary>
 		/// Gets the mod name.
 		/// </summary>
+		/// <remarks>Uses the class name if AssemblyTitleAttribute is missing.</remarks>
 		public virtual string Name
 		{
-			get { return string.Format("{0} v{1}", GetType().Name, Version); }
+			get
+			{
+				var attr = GetAssemblyAttribute<AssemblyTitleAttribute>();
+				return string.Format("{0} v{1}", 
+					attr == null ? GetType().Name : attr.Title,
+					Version
+				);
+			}
 		}
 
 		/// <summary>
-		/// Gets the in-game mod description (includes author name).
+		/// Gets the in-game mod description (includes author name if available).
 		/// </summary>
-		public virtual string Description
+		/// <remarks>Explicitly implemented, the author name is only added to the game description.</remarks>
+		string IUserMod.Description
 		{
-			get { return string.Format("{0}\nby {1}", ModDescription, Author); }
+			get
+			{
+				return string.IsNullOrEmpty(Author)
+					? Description
+					: string.Format("{0}\nby {1}", Description, Author);
+			}
 		}
 
 		#endregion
@@ -50,9 +64,13 @@ namespace skwas.CitiesSkylines
 		/// <summary>
 		/// Gets the mod description.
 		/// </summary>
-		public virtual string ModDescription
+		public virtual string Description
 		{
-			get { return GetAssemblyAttribute<AssemblyDescriptionAttribute>().Description; }
+			get
+			{
+				var attr = GetAssemblyAttribute<AssemblyDescriptionAttribute>();
+				return attr == null ? null : attr.Description;
+			}
 		}
 
 		/// <summary>
@@ -60,7 +78,11 @@ namespace skwas.CitiesSkylines
 		/// </summary>
 		public virtual string Author
 		{
-			get { return GetAssemblyAttribute<AssemblyCompanyAttribute>().Company; }
+			get
+			{
+				var attr = GetAssemblyAttribute<AssemblyCompanyAttribute>();
+				return attr == null ? null : attr.Company;
+			}
 		}
 
 		/// <summary>
@@ -74,7 +96,7 @@ namespace skwas.CitiesSkylines
 		/// <summary>
 		/// Gets the mod path.
 		/// </summary>
-		public virtual string ModPath { get { return PluginInfo.modPath; } }
+		public virtual string ModPath { get { return PluginInfo == null ? null : PluginInfo.modPath; } }
 
 		private string _modDllPath;
 		/// <summary>
@@ -83,7 +105,7 @@ namespace skwas.CitiesSkylines
 		public virtual string ModDllPath {
 			get
 			{
-				var modPath = ModPath;	// Prefect, forces load of plugin info.
+				var modPath = ModPath;	// Prefetch, forces load of plugin info.
 				return _modDllPath ?? modPath;
 			}
 		}
@@ -91,12 +113,12 @@ namespace skwas.CitiesSkylines
 		/// <summary>
 		/// Gets the steam workshop id of the mod/plugin. In local installations, returns PublishedFileId.invalid.
 		/// </summary>
-		public virtual PublishedFileId SteamWorkshopId { get { return PluginInfo.publishedFileID; } }
+		public virtual PublishedFileId SteamWorkshopId { get { return PluginInfo == null ? PublishedFileId.invalid : PluginInfo.publishedFileID; } }
 
 		/// <summary>
 		/// Gets the plugin info for this mod (and caches it in local variable).
 		/// </summary>
-		private PluginManager.PluginInfo PluginInfo
+		protected virtual PluginManager.PluginInfo PluginInfo
 		{
 			get { return _pluginInfo ?? (_pluginInfo = GetPluginInfo()); }
 		}
@@ -108,7 +130,9 @@ namespace skwas.CitiesSkylines
 		/// <returns></returns>
 		protected T GetAssemblyAttribute<T>()
 		{
-			return (T)_assembly.GetCustomAttributes(typeof(T), false)[0];
+			var attributes = _assembly.GetCustomAttributes(typeof (T), false);
+			if (attributes.Length == 0) return default(T);
+			return (T)attributes[0];
 		}
 
 		/// <summary>
