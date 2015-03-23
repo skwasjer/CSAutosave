@@ -84,12 +84,7 @@ Gets the mod name.
 ##### Description
 Type: `System.String`
 
-Gets the in-game mod description (includes author name).
-
-##### ModDescription
-Type: `System.String`
-
-Gets the mod description (without author name).
+Gets the mod description.
 
 ##### Author
 Type: `System.String`
