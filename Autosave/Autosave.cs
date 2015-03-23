@@ -17,7 +17,7 @@ namespace skwas.CitiesSkylines
 		private IManagers _managers;
 		private AutosaveSettings _settings;
 
-		#region Implementation of ILoadingExtension
+		#region Implementation of ISerializableDataExtension
 
 		private Timer _timer;
 
@@ -94,7 +94,7 @@ namespace skwas.CitiesSkylines
 			}
 			catch (Exception ex)
 			{
-				Log.Info(ex.ToString());
+				Log.Error(ex.ToString());
 			}
 			finally
 			{
