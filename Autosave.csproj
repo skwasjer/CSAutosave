@@ -56,21 +56,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\ModBase\Log.cs">
-      <Link>Log.cs</Link>
-    </Compile>
-    <Compile Include="..\ModBase\ModBase.cs">
-      <Link>ModBase.cs</Link>
-    </Compile>
-    <Compile Include="..\ModBase\ModSettings.cs">
-      <Link>ModSettings.cs</Link>
-    </Compile>
     <Compile Include="Autosave.cs" />
     <Compile Include="AutosaveSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="License.md" />
+    <None Include="Readme.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

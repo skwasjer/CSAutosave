@@ -6,11 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Autosave", "Autosave.csproj", "{6E991498-F3D2-4637-ACA0-43C1456539E3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{249ABA63-65B5-44C6-891D-873C1A99DD2B}"
-	ProjectSection(SolutionItems) = preProject
-		..\License.md = ..\License.md
-		..\ModBase\Readme.md = ..\ModBase\Readme.md
-		Readme.md = Readme.md
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
