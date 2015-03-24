@@ -58,11 +58,20 @@
   <ItemGroup>
     <Compile Include="Autosave.cs" />
     <Compile Include="AutosaveSettings.cs" />
+    <Compile Include="ModBase\Log.cs" />
+    <Compile Include="ModBase\Logging\FileLogger.cs" />
+    <Compile Include="ModBase\Logging\ILogger.cs" />
+    <Compile Include="ModBase\Logging\IngameLogger.cs" />
+    <Compile Include="ModBase\Logging\Logger.cs" />
+    <Compile Include="ModBase\ModBase.cs" />
+    <Compile Include="ModBase\ModSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="License.md" />
+    <None Include="ModBase\License.md" />
+    <None Include="ModBase\Readme.md" />
     <None Include="Readme.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

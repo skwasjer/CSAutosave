@@ -1,0 +1,3 @@
+[submodule "ModBase"]
+	path = ModBase
+	url = https://github.com/skwasjer/CSModBase.git
