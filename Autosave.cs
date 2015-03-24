@@ -23,6 +23,8 @@ namespace skwas.CitiesSkylines
 
 		void ISerializableDataExtension.OnCreated(ISerializableData serializedData)
 		{
+			Log.Output = new FileLogger(ModDllPath + ".log");
+
 			_managers = serializedData.managers;
 
 			_settings = new AutosaveSettings(ModDllPath);
